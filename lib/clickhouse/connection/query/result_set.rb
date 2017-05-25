@@ -80,11 +80,11 @@ module Clickhouse
         end
 
         def parse_string_value(value)
-          value.force_encoding("UTF-8")
+          value.to_s.force_encoding("UTF-8")
         end
 
         def parse_fixed_string_value(value)
-          value.delete("\000").force_encoding("UTF-8")
+          value.to_s.delete("\000").force_encoding("UTF-8")
         end
 
         def parse_date_value(value)
@@ -92,7 +92,7 @@ module Clickhouse
         end
 
         def parse_date_time_value(value)
-          Time.parse(value)
+          Time.parse(value) rescue nil # "rescue nil" for Nullable ?
         end
 
         def parse_array_value(value)
