@@ -51,15 +51,17 @@ module Clickhouse
             case type
             when "UInt8", "UInt16", "UInt32", "UInt64", "Int8", "Int16", "Int32", "Int64"
               parse_int_value value
-            when "Float32", "Float64"
+            when "Nullable(UInt8)", "Nullable(UInt16)", "Nullable(UInt32)", "Nullable(UInt64)", "Nullable(Int8)", "Nullable(Int16)", "Nullable(Int32)",  "Nullable(Int64)"
+              parse_int_value value
+            when "Float32", "Float64", "Nullable(Float64)", "Nullable(Float32)"
               parse_float_value value
-            when "String", "Enum8", "Enum16"
+            when "String", "Enum8", "Enum16", "Nullable(String)"
               parse_string_value value
             when /FixedString\(\d+\)/
               parse_fixed_string_value value
             when "Date"
               parse_date_value value
-            when "DateTime"
+            when "DateTime", "Nullable(DateTime)"
               parse_date_time_value value
             when /Array\(/
               parse_array_value value
@@ -78,11 +80,11 @@ module Clickhouse
         end
 
         def parse_string_value(value)
-          value.force_encoding("UTF-8")
+          value.to_s.force_encoding("UTF-8")
         end
 
         def parse_fixed_string_value(value)
-          value.delete("\000").force_encoding("UTF-8")
+          value.to_s.delete("\000").force_encoding("UTF-8")
         end
 
         def parse_date_value(value)
@@ -90,7 +92,7 @@ module Clickhouse
         end
 
         def parse_date_time_value(value)
-          Time.parse(value)
+          Time.parse(value) rescue nil # "rescue nil" for Nullable ?
         end
 
         def parse_array_value(value)
