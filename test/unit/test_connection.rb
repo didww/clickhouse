@@ -1,7 +1,7 @@
 require_relative "../test_helper"
 
 module Unit
-  class TestConnection < MiniTest::Test
+  class TestConnection < Minitest::Test
 
     describe Clickhouse::Connection do
       before do

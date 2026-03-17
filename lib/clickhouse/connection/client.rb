@@ -42,7 +42,7 @@ module Clickhouse
 
       def ensure_authentication
         username, password = @config.values_at(:username, :password)
-        client.basic_auth(username || "default", password) if username || password
+        client.set_basic_auth(username || "default", password) if username || password
       end
 
       def path(query)
@@ -126,7 +126,7 @@ module Clickhouse
           round = (amount < 1) ? 3 : 1
           "#{amount.round(round)}ms"
         else
-          "#{number.round(1)}s"
+          "#{number.to_f.round(1)}s"
         end
       end
 

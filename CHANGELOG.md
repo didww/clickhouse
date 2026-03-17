@@ -1,5 +1,12 @@
 ## Clickhouse CHANGELOG
 
+### Version 0.1.11 (March 16, 2026)
+
+* Upgraded Faraday dependency from unrestricted to `>= 2.0, < 3.0` (Faraday 1.x is no longer supported)
+* `Faraday::Connection#basic_auth` replaced with `Faraday::Connection#set_basic_auth`
+* Fixed test infrastructure for compatibility with modern Ruby (Minitest namespace, mocha/minitest require)
+* Fixed several minor bugs
+
 ### Version 0.1.10 (January 13, 2017)
 
 * Fixed `erubis` dependency once and for all

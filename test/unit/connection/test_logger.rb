@@ -2,7 +2,7 @@ require_relative "../../test_helper"
 
 module Unit
   module Connection
-    class TestLogger < MiniTest::Test
+    class TestLogger < Minitest::Test
 
       class Connection < SimpleConnection
         include Clickhouse::Connection::Logger

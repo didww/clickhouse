@@ -3,7 +3,7 @@ require_relative "../../../test_helper"
 module Unit
   module Connection
     module Query
-      class TestResultRow < MiniTest::Test
+      class TestResultRow < Minitest::Test
 
         describe Clickhouse::Connection::Query::ResultRow do
           describe "#to_hash" do

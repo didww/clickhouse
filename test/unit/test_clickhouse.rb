@@ -1,7 +1,7 @@
 require_relative "../test_helper"
 
 module Unit
-  class TestClickhouse < MiniTest::Test
+  class TestClickhouse < Minitest::Test
 
     describe Clickhouse do
       it "has the current version" do

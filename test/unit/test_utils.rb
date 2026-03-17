@@ -1,7 +1,7 @@
 require_relative "../test_helper"
 
 module Unit
-  class TestUtils < MiniTest::Test
+  class TestUtils < Minitest::Test
 
     describe Clickhouse::Utils do
       describe ".normalize_url" do

@@ -3,7 +3,7 @@ require_relative "../../../test_helper"
 module Unit
   module Connection
     module Query
-      class TestResultSet < MiniTest::Test
+      class TestResultSet < Minitest::Test
 
         describe Clickhouse::Connection::Query::ResultSet do
           before do

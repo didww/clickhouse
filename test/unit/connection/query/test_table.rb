@@ -3,7 +3,7 @@ require_relative "../../../test_helper"
 module Unit
   module Connection
     module Query
-      class TestTable < MiniTest::Test
+      class TestTable < Minitest::Test
 
         describe Clickhouse::Connection::Query::Table do
           it "generates a 'CREATE TABLE' statement" do

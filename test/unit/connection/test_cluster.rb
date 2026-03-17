@@ -2,7 +2,7 @@ require_relative "../../test_helper"
 
 module Unit
   module Connection
-    class TestCluser < MiniTest::Test
+    class TestCluser < Minitest::Test
 
       describe Clickhouse::Cluster do
         it "creates a connection pond" do
@@ -47,7 +47,9 @@ module Unit
               http://localhost:1236
             ), cluster.pond.available.collect(&:url)
 
-            cluster.tables
+            assert_raises Clickhouse::ConnectionError do
+              cluster.tables
+            end
             assert_equal [], cluster.pond.available.collect(&:url)
           end
         end

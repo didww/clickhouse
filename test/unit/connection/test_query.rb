@@ -2,7 +2,7 @@ require_relative "../../test_helper"
 
 module Unit
   module Connection
-    class TestQuery < MiniTest::Test
+    class TestQuery < Minitest::Test
 
       class Connection < SimpleConnection
         include Clickhouse::Connection::Query
@@ -246,7 +246,7 @@ ENGINE = MergeTree(date, 8192)
 
         describe "#count" do
           it "returns the first value of the first row" do
-            @connection.expects(:select_value).with(:select => "COUNT(*)", :from => "logs").returns(1982)
+            @connection.expects(:select_value).with({:from => "logs", :select => "COUNT(*)"}).returns(1982)
             assert_equal 1982, @connection.count(:from => "logs")
           end
         end
